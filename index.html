@@ -1,0 +1,95 @@
++<!doctype html>
++<html lang="en">
++  <head>
++    <meta charset="utf-8" />
++    <meta name="viewport" content="width=device-width,initial-scale=1" />
++    <title>Portfolio — Your Name</title>
++    <meta name="description" content="Portfolio of Your Name — projects, experience, and contact information." />
++  </head>
++  <body>
++    <a class="skip-link" href="#main">Skip to main content</a>
++
++    <header>
++      <div>
++        <h1>Your Name</h1>
++        <p>Job Title — Location</p>
++      </div>
++      <nav aria-label="Primary">
++        <ul>
++          <li><a href="#about">About</a></li>
++          <li><a href="#projects">Projects</a></li>
++          <li><a href="#experience">Experience</a></li>
++          <li><a href="#skills">Skills</a></li>
++          <li><a href="#contact">Contact</a></li>
++        </ul>
++      </nav>
++    </header>
++
++    <main id="main">
++      <section id="about" aria-labelledby="about-heading">
++        <h2 id="about-heading">About</h2>
++        <p>Write a short paragraph about yourself. Mention your focus, values, and what you're looking for.</p>
++      </section>
++
++      <section id="projects" aria-labelledby="projects-heading">
++        <h2 id="projects-heading">Projects</h2>
++        <article>
++          <h3>Project Title One</h3>
++          <p>Short description of the project, your role, tech used, and outcome or link.</p>
++          <ul>
++            <li><strong>Role:</strong> Lead developer</li>
++            <li><strong>Tech:</strong> HTML, JavaScript, Node.js</li>
++            <li><strong>Link:</strong> <a href="#">Repository or live site</a></li>
++          </ul>
++        </article>
++
++        <article>
++          <h3>Project Title Two</h3>
++          <p>Short description of the second project.</p>
++        </article>
++      </section>
++
++      <section id="experience" aria-labelledby="experience-heading">
++        <h2 id="experience-heading">Experience</h2>
++        <div>
++          <h3>Company Name</h3>
++          <p><em>Role — Dates</em></p>
++          <ul>
++            <li>Responsibility or achievement one.</li>
++            <li>Responsibility or achievement two.</li>
++          </ul>
++        </div>
++      </section>
++
++      <section id="skills" aria-labelledby="skills-heading">
++        <h2 id="skills-heading">Skills</h2>
++        <p>List your relevant skills or group them by category.</p>
++        <ul>
++          <li>JavaScript / TypeScript</li>
++          <li>Web Development</li>
++          <li>APIs, Databases</li>
++        </ul>
++      </section>
++
++      <section id="contact" aria-labelledby="contact-heading">
++        <h2 id="contact-heading">Contact</h2>
++        <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
++        <p>Optional: link to LinkedIn, GitHub, or a contact form.</p>
++      </section>
++    </main>
++
++    <footer>
++      <p>&copy; <span id="year">2025</span> Your Name. All rights reserved.</p>
++    </footer>
++
++    <script>
++      // Set current year automatically
++      (function(){
++        var y = new Date().getFullYear();
++        var el = document.getElementById('year');
++        if(el) el.textContent = y;
++      })();
++    </script>
++  </body>
++</html>
++
