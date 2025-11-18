@@ -1,95 +1,275 @@
-+<!doctype html>
-+<html lang="en">
-+  <head>
-+    <meta charset="utf-8" />
-+    <meta name="viewport" content="width=device-width,initial-scale=1" />
-+    <title>Portfolio — Your Name</title>
-+    <meta name="description" content="Portfolio of Your Name — projects, experience, and contact information." />
-+  </head>
-+  <body>
-+    <a class="skip-link" href="#main">Skip to main content</a>
-+
-+    <header>
-+      <div>
-+        <h1>Your Name</h1>
-+        <p>Job Title — Location</p>
-+      </div>
-+      <nav aria-label="Primary">
-+        <ul>
-+          <li><a href="#about">About</a></li>
-+          <li><a href="#projects">Projects</a></li>
-+          <li><a href="#experience">Experience</a></li>
-+          <li><a href="#skills">Skills</a></li>
-+          <li><a href="#contact">Contact</a></li>
-+        </ul>
-+      </nav>
-+    </header>
-+
-+    <main id="main">
-+      <section id="about" aria-labelledby="about-heading">
-+        <h2 id="about-heading">About</h2>
-+        <p>Write a short paragraph about yourself. Mention your focus, values, and what you're looking for.</p>
-+      </section>
-+
-+      <section id="projects" aria-labelledby="projects-heading">
-+        <h2 id="projects-heading">Projects</h2>
-+        <article>
-+          <h3>Project Title One</h3>
-+          <p>Short description of the project, your role, tech used, and outcome or link.</p>
-+          <ul>
-+            <li><strong>Role:</strong> Lead developer</li>
-+            <li><strong>Tech:</strong> HTML, JavaScript, Node.js</li>
-+            <li><strong>Link:</strong> <a href="#">Repository or live site</a></li>
-+          </ul>
-+        </article>
-+
-+        <article>
-+          <h3>Project Title Two</h3>
-+          <p>Short description of the second project.</p>
-+        </article>
-+      </section>
-+
-+      <section id="experience" aria-labelledby="experience-heading">
-+        <h2 id="experience-heading">Experience</h2>
-+        <div>
-+          <h3>Company Name</h3>
-+          <p><em>Role — Dates</em></p>
-+          <ul>
-+            <li>Responsibility or achievement one.</li>
-+            <li>Responsibility or achievement two.</li>
-+          </ul>
-+        </div>
-+      </section>
-+
-+      <section id="skills" aria-labelledby="skills-heading">
-+        <h2 id="skills-heading">Skills</h2>
-+        <p>List your relevant skills or group them by category.</p>
-+        <ul>
-+          <li>JavaScript / TypeScript</li>
-+          <li>Web Development</li>
-+          <li>APIs, Databases</li>
-+        </ul>
-+      </section>
-+
-+      <section id="contact" aria-labelledby="contact-heading">
-+        <h2 id="contact-heading">Contact</h2>
-+        <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-+        <p>Optional: link to LinkedIn, GitHub, or a contact form.</p>
-+      </section>
-+    </main>
-+
-+    <footer>
-+      <p>&copy; <span id="year">2025</span> Your Name. All rights reserved.</p>
-+    </footer>
-+
-+    <script>
-+      // Set current year automatically
-+      (function(){
-+        var y = new Date().getFullYear();
-+        var el = document.getElementById('year');
-+        if(el) el.textContent = y;
-+      })();
-+    </script>
-+  </body>
-+</html>
-+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Samuel Cris F. Garaygay — Portfolio</title>
+  <meta name="description" content="Samuel Cris F. Garaygay — projects, about, contact" />
+  <style>
+    :root{
+      --bg:#ffffff; --card:#f5f5f5; --muted:#666666; --accent:#0066cc; --glass: rgba(0,0,0,0.02);
+      --radius:12px; --gap:1rem; --max:1100px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:linear-gradient(180deg,#ffffff 0%, #f9f9f9 100%); color:#333333;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; line-height:1.5;
+      padding:2rem;
+      display:flex; justify-content:center;
+    }
+    .container{width:100%;max-width:var(--max)}
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:var(--gap); margin-bottom:1.25rem;
+    }
+    .brand{display:flex;align-items:center;gap:.75rem}
+    .logo{
+      width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,#0066cc,#0052a3);display:flex;align-items:center;justify-content:center;font-weight:700;color:#ffffff;
+      box-shadow:0 6px 18px rgba(0,0,0,0.1);
+      object-fit:cover;
+    }
+    nav a{color:var(--muted);text-decoration:none;margin-left:1rem;font-weight:600}
+    nav a:hover{color:var(--accent)}
+    main{display:grid;grid-template-columns:1fr;gap:1rem}
+    .hero{
+      background:linear-gradient(180deg, rgba(0,102,204,0.05), rgba(0,102,204,0.02));
+      border-radius:var(--radius); padding:1.25rem; display:flex; gap:1rem; align-items:center;
+      box-shadow:0 6px 30px rgba(0,0,0,0.08);
+    }
+    .hero .avatar{
+      width:96px;height:96px;border-radius:14px; background:linear-gradient(135deg,#e8f0ff,#d9e8ff);
+      display:flex;align-items:center;justify-content:center;font-weight:700;font-size:28px;color:#0066cc;
+      flex-shrink:0;
+      object-fit:cover;
+    }
+    .hero h1{margin:0;font-size:1.25rem}
+    .hero p{margin:.25rem 0 0;color:var(--muted)}
+    .grid{
+      display:grid; gap:var(--gap);
+      grid-template-columns: repeat(3,1fr);
+    }
+    .card{
+      background:var(--card); padding:1rem; border-radius:12px; color:inherit; box-shadow:0 4px 18px rgba(2,6,23,0.45);
+    }
+    .card h3{margin:0 0 .5rem 0}
+    .projects{grid-column:span 2}
+    .project-item{padding:.6rem;border-radius:10px;background:var(--glass);margin-bottom:.6rem}
+    .project-item a{color:var(--accent);text-decoration:none;font-weight:700}
+    footer{margin-top:1rem;color:var(--muted);font-size:.9rem;text-align:center}
+    .buttons{display:flex;gap:.5rem; margin-top:.6rem}
+    .btn{
+      background:linear-gradient(90deg,#0066cc,#0052a3); color:#ffffff;padding:.5rem .75rem;border-radius:10px;border:0;font-weight:700;cursor:pointer;
+      text-decoration:none;
+    }
+    .muted{color:var(--muted)}
+    .avatar-clickable{cursor:pointer;transition:transform 0.2s}
+    .avatar-clickable{cursor:pointer}
+    .avatar-clickable:hover{transform:scale(1.05)}
+    .profile-upload{position:relative;display:inline-block;width:100%;text-align:center}
+    .profile-upload input{display:none}
+    .profile-upload-btn{display:inline-block;background:var(--accent);color:#04263b;padding:0.75rem 1.5rem;border-radius:10px;font-weight:700;cursor:pointer;transition:opacity 0.2s}
+    .profile-upload-btn:hover{opacity:0.8}
+    .lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:1000;align-items:center;justify-content:center}
+    .lightbox.active{display:flex}
+    .lightbox-content{position:relative;max-width:90%;max-height:90%;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,0.9)}
+    .lightbox-content img{width:100%;height:auto;border-radius:16px;max-width:600px}
+    .lightbox-close{position:absolute;top:10px;right:10px;background:rgba(255,255,255,0.1);border:2px solid white;color:white;font-size:28px;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s}
+    .lightbox-close:hover{background:rgba(255,255,255,0.2)}
+    @media (max-width:880px){
+      .grid{grid-template-columns:repeat(1,1fr)}
+      .projects{grid-column:span 1}
+      header{flex-direction:column;align-items:flex-start;gap:.75rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <div class="brand">
+        <div class="logo" id="headerAvatar" style="cursor:pointer;transition:transform 0.2s;flex-shrink:0;">SCG</div>
+        <div>
+          <div style="font-weight:800">Samuel Cris F. Garaygay</div>
+          <div class="muted" style="font-size:.85rem">Frontend Developer • Designer</div>
+        </div>
+      </div>
+      <nav aria-label="Main navigation">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="intro">
+        <div class="avatar avatar-clickable" id="mainAvatar" aria-hidden="true" style="cursor:pointer;transition:transform 0.2s;">SCG</div>
+        <div style="flex:1">
+          <h1 id="intro">Hi — I'm Samuel Cris F. Garaygay</h1>
+          <p class="muted">I build accessible, responsive web apps. I focus on clean interfaces and performant code.</p>
+          <div class="buttons">
+            <a class="btn" href="#projects">See projects</a>
+            <a class="btn" href="#contact" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)">Contact</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid" style="margin-top:1rem">
+        <div class="card projects" id="projects" aria-labelledby="projects-title">
+          <h3 id="projects-title">Selected projects</h3>
+
+          <div class="project-item">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:700">Project One</div>
+                <div class="muted" style="font-size:.85rem">A brief tagline about the project</div>
+              </div>
+              <div><a href="#" rel="noopener">Live</a></div>
+            </div>
+            <p class="muted" style="margin:.5rem 0 0">Short description. Tech: HTML, CSS, JS.</p>
+          </div>
+
+          <div class="project-item">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:700">Project Two</div>
+                <div class="muted" style="font-size:.85rem">Another short tagline</div>
+              </div>
+              <div><a href="#" rel="noopener">Repo</a></div>
+            </div>
+            <p class="muted" style="margin:.5rem 0 0">Short description. Tech: React, Node.</p>
+          </div>
+
+          <!-- Add more projects similarly -->
+        </div>
+
+        <aside class="card" id="about" aria-labelledby="about-title">
+          <h3 id="about-title">About</h3>
+          <p class="muted">I'm a developer focused on building usable interfaces, performance, and accessibility. I enjoy mentoring and open source.</p>
+          <h4 style="margin-top:.75rem">Skills</h4>
+          <div class="muted">HTML • CSS • JavaScript • React • Node • Git</div>
+
+          <h4 style="margin-top:.75rem">Experience</h4>
+          <div class="muted">3+ years building web apps, freelance &amp; product teams.</div>
+        </aside>
+
+        <aside class="card" id="contact" aria-labelledby="contact-title">
+          <h3 id="contact-title">Contact</h3>
+          <p class="muted">Email me at <a class="muted" href="mailto:samuelcrisfg@gmail.com">samuelcrisfg@gmail.com</a></p>
+          <p class="muted">Or link to LinkedIn / GitHub below.</p>
+          <div style="margin-top:.6rem;display:flex;gap:.5rem">
+            <a class="btn" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+      <footer>
+      <div class="muted">© Samuel Cris F. Garaygay — Built with HTML & CSS. Replace content and links with your own.</div>
+    </footer>
+  </div>
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:1000;align-items:center;justify-content:center">
+    <div style="position:relative;max-width:90%;max-height:90%;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,0.9)">
+      <button id="lightboxClose" style="position:absolute;top:10px;right:10px;background:rgba(255,255,255,0.1);border:2px solid white;color:white;font-size:28px;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s">&times;</button>
+      <img id="lightboxImage" src="" alt="Profile" style="width:100%;height:auto;border-radius:16px;max-width:600px">
+    </div>
+  </div>
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const mainAvatar = document.getElementById('mainAvatar');
+    const headerAvatar = document.getElementById('headerAvatar');
+    const profileInput = document.getElementById('profileInput');
+
+    // Handle profile picture upload
+    profileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        displayProfileImage(event.target.result);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Display profile image in avatars
+    function displayProfileImage(src) {
+      const newImg = document.createElement('img');
+      newImg.src = src;
+      newImg.style.cssText = 'width:100%;height:100%;border-radius:inherit;object-fit:cover;';
+      
+      // Update main avatar
+      mainAvatar.innerHTML = '';
+      mainAvatar.appendChild(newImg);
+      mainAvatar.style.background = 'none';
+      
+      // Update header avatar
+      const headerImg = document.createElement('img');
+      headerImg.src = src;
+      headerImg.style.cssText = 'width:100%;height:100%;border-radius:inherit;object-fit:cover;';
+      headerAvatar.innerHTML = '';
+      headerAvatar.appendChild(headerImg);
+      headerAvatar.style.background = 'none';
+
+      // Save to localStorage
+      localStorage.setItem('profileImage', src);
+    }
+
+    // Lightbox functionality
+    function openLightbox(imageSrc) {
+      lightboxImage.src = imageSrc;
+      lightbox.classList.add('active');
+    }
+
+    mainAvatar.addEventListener('click', () => {
+      const img = mainAvatar.querySelector('img');
+      if (img) {
+        openLightbox(img.src);
+      }
+    });
+
+    headerAvatar.addEventListener('click', () => {
+      const img = headerAvatar.querySelector('img');
+      if (img) {
+        openLightbox(img.src);
+      }
+    });
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('active');
+      }
+    });
+
+    // Load saved profile image on page load
+    window.addEventListener('load', () => {
+      // First try to load profile.jpg from the folder
+      const img = new Image();
+      img.onload = () => {
+        displayProfileImage(img.src);
+      };
+      img.onerror = () => {
+        // If profile.jpg not found, check localStorage
+        const savedImage = localStorage.getItem('profileImage');
+        if (savedImage) {
+          displayProfileImage(savedImage);
+        }
+      };
+      img.src = 'profile.jpg';
+    });
+  </script>
+</body>
+</html></div></aside></div>
