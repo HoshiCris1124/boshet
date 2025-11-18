@@ -46,16 +46,23 @@
     .hero h1{margin:0;font-size:1.25rem}
     .hero p{margin:.25rem 0 0;color:var(--muted)}
     .grid{
-      display:grid; gap:var(--gap);
-      grid-template-columns: repeat(3,1fr);
+      display:grid; gap:3rem;
+      grid-template-columns: 1fr 300px;
+      align-items:start;
+      /* allow children to shrink inside grid columns */
+      min-width:0;
     }
     .card{
       background:var(--card); padding:1rem; border-radius:12px; color:inherit; box-shadow:0 4px 18px rgba(2,6,23,0.45);
     }
     .card h3{margin:0 0 .5rem 0}
-    .projects{grid-column:span 2}
+    .projects{grid-column:1 / 2;position:relative;z-index:0;min-width:0;overflow:hidden}
     .project-item{padding:.6rem;border-radius:10px;background:var(--glass);margin-bottom:.6rem}
     .project-item a{color:var(--accent);text-decoration:none;font-weight:700}
+    .projects-more{display:none;margin-top:.5rem}
+    .projects-more.active{display:block}
+    .sidebar{grid-column:2 / 3;display:flex;flex-direction:column;gap:var(--gap);position:relative;z-index:2;min-width:0;background:transparent}
+    
     footer{margin-top:1rem;color:var(--muted);font-size:.9rem;text-align:center}
     .buttons{display:flex;gap:.5rem; margin-top:.6rem}
     .btn{
@@ -66,6 +73,7 @@
     .avatar-clickable{cursor:pointer;transition:transform 0.2s}
     .avatar-clickable{cursor:pointer}
     .avatar-clickable:hover{transform:scale(1.05)}
+    .logo.avatar-clickable{cursor:pointer}
     .profile-upload{position:relative;display:inline-block;width:100%;text-align:center}
     .profile-upload input{display:none}
     .profile-upload-btn{display:inline-block;background:var(--accent);color:#04263b;padding:0.75rem 1.5rem;border-radius:10px;font-weight:700;cursor:pointer;transition:opacity 0.2s}
@@ -76,6 +84,8 @@
     .lightbox-content img{width:100%;height:auto;border-radius:16px;max-width:600px}
     .lightbox-close{position:absolute;top:10px;right:10px;background:rgba(255,255,255,0.1);border:2px solid white;color:white;font-size:28px;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s}
     .lightbox-close:hover{background:rgba(255,255,255,0.2)}
+    .contact-more{display:none;margin-top:.5rem}
+    .contact-more.active{display:block}
     @media (max-width:880px){
       .grid{grid-template-columns:repeat(1,1fr)}
       .projects{grid-column:span 1}
@@ -87,13 +97,13 @@
   <div class="container" role="main">
     <header>
       <div class="brand">
-        <div class="logo" id="headerAvatar" style="cursor:pointer;transition:transform 0.2s;flex-shrink:0;">SCG</div>
+        <div class="logo avatar-clickable" id="headerAvatar" role="button" tabindex="0" aria-label="Open profile image" style="cursor:pointer;transition:transform 0.2s;flex-shrink:0;">SCG</div>
         <div>
           <div style="font-weight:800">Samuel Cris F. Garaygay</div>
           <div class="muted" style="font-size:.85rem">Frontend Developer • Designer</div>
         </div>
       </div>
-      <nav aria-label="Main navigation">
+      <nav aria-label="Main navigation" style="display:none">
         <a href="#projects">Projects</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
@@ -107,60 +117,122 @@
           <h1 id="intro">Hi — I'm Samuel Cris F. Garaygay</h1>
           <p class="muted">I build accessible, responsive web apps. I focus on clean interfaces and performant code.</p>
           <div class="buttons">
-            <a class="btn" href="#projects">See projects</a>
-            <a class="btn" href="#contact" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)">Contact</a>
+            <a class="btn" id="seeProjectsBtn" href="#projects" aria-controls="projectsMore" aria-expanded="false">See projects</a>
+            <a class="btn" id="contactBtn" href="#contact" style="background:transparent;border:1px solid rgba(0,0,0,0.06);color:var(--muted)" aria-controls="contactMore">Contact</a>
           </div>
         </div>
       </section>
 
       <section class="grid" style="margin-top:1rem">
         <div class="card projects" id="projects" aria-labelledby="projects-title">
-          <h3 id="projects-title">Selected projects</h3>
-
+          <h3 id="projects-title">Selected project</h3>
           <div class="project-item">
             <div style="display:flex;justify-content:space-between;align-items:center">
               <div>
-                <div style="font-weight:700">Project One</div>
-                <div class="muted" style="font-size:.85rem">A brief tagline about the project</div>
+                <div style="font-weight:700">Arduino Environmental Monitor</div>
+                <div class="muted" style="font-size:.85rem">Real-time temperature & humidity logger with OLED display</div>
               </div>
-              <div><a href="#" rel="noopener">Live</a></div>
+              <div><a href="#" rel="noopener">Read write-up</a></div>
             </div>
-            <p class="muted" style="margin:.5rem 0 0">Short description. Tech: HTML, CSS, JS.</p>
+            <p class="muted" style="margin:.5rem 0 0">An Arduino-based IoT project that reads temperature and humidity from a DHT22 sensor, displays values on a 128x64 OLED, and logs data to an SD card. Tech: Arduino (C++), DHT22, SSD1306 OLED, SD card module.</p>
           </div>
 
           <div class="project-item">
             <div style="display:flex;justify-content:space-between;align-items:center">
               <div>
-                <div style="font-weight:700">Project Two</div>
-                <div class="muted" style="font-size:.85rem">Another short tagline</div>
+                <div style="font-weight:700">Arduino Greenhouse Controller</div>
+                <div class="muted" style="font-size:.85rem">Automated watering and lighting system with sensors</div>
               </div>
-              <div><a href="#" rel="noopener">Repo</a></div>
+              <div><a href="#" rel="noopener">GitHub</a></div>
             </div>
-            <p class="muted" style="margin:.5rem 0 0">Short description. Tech: React, Node.</p>
+            <p class="muted" style="margin:.5rem 0 0">An Arduino-based greenhouse automation system that controls water pumps and LED grow lights based on soil moisture and light levels. Features an LCD display showing real-time sensor data and SD card logging. Tech: Arduino, moisture sensors, light sensors, relays.</p>
           </div>
 
-          <!-- Add more projects similarly -->
+          <div class="project-item">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:700">Arduino Weather Station</div>
+                <div class="muted" style="font-size:.85rem">Multi-sensor weather monitoring and data logging</div>
+              </div>
+              <div><a href="#" rel="noopener">Live Demo</a></div>
+            </div>
+            <p class="muted" style="margin:.5rem 0 0">A comprehensive weather station built with Arduino that measures temperature, humidity, air pressure, and UV index. Displays readings on a web interface and logs data to the cloud. Tech: Arduino, DHT22, BMP280, VEML6070, WiFi shield.</p>
+          </div>
+
+          <div id="projectsMore" class="projects-more" aria-hidden="true">
+            <div class="project-item">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div>
+                  <div style="font-weight:700">Arduino Gas Leak Detector</div>
+                  <div class="muted" style="font-size:.85rem">Real-time gas sensing with alarm and email alerts</div>
+                </div>
+                <div><a href="#" rel="noopener">Demo</a></div>
+              </div>
+              <p class="muted" style="margin:.5rem 0 0">A safety system using Arduino and MQ-5 gas sensor that detects natural gas leaks, triggers a piezo buzzer alarm, and sends email notifications. Includes LCD display for PPM readings. Tech: Arduino, MQ-5 sensor, Ethernet module.</p>
+            </div>
+
+            <div class="project-item">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div>
+                  <div style="font-weight:700">Arduino Motion-Triggered Camera</div>
+                  <div class="muted" style="font-size:.85rem">PIR sensor captures images to SD card</div>
+                </div>
+                <div><a href="#" rel="noopener">Source</a></div>
+              </div>
+              <p class="muted" style="margin:.5rem 0 0">A motion detection camera system using Arduino, PIR motion sensors, and camera module that automatically captures images when motion is detected. Images are saved with timestamps to an SD card. Tech: Arduino, PIR sensor, OV7670 camera.</p>
+            </div>
+
+            <div class="project-item">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div>
+                  <div style="font-weight:700">Arduino Line-Following Robot</div>
+                  <div class="muted" style="font-size:.85rem">Autonomous robot using IR sensors and DC motors</div>
+                </div>
+                <div><a href="#" rel="noopener">Repo</a></div>
+              </div>
+              <p class="muted" style="margin:.5rem 0 0">A mobile robot that autonomously follows black lines on white surfaces using IR sensors and speed control via PWM. Features obstacle avoidance and adjustable line detection threshold. Tech: Arduino, IR sensors, DC motors, motor driver.</p>
+            </div>
+          </div>
         </div>
 
+        <div class="sidebar">
         <aside class="card" id="about" aria-labelledby="about-title">
           <h3 id="about-title">About</h3>
-          <p class="muted">I'm a developer focused on building usable interfaces, performance, and accessibility. I enjoy mentoring and open source.</p>
-          <h4 style="margin-top:.75rem">Skills</h4>
-          <div class="muted">HTML • CSS • JavaScript • React • Node • Git</div>
+          <p class="muted">I'm a frontend developer who builds usable, accessible, and performant web applications. I enjoy turning product ideas into polished user experiences and also tinker with embedded/hardware projects in my spare time.</p>
+
+          <h4 style="margin-top:.75rem">Summary</h4>
+          <p class="muted">Over 3 years of professional experience delivering responsive web apps and component libraries. Comfortable working across the stack — from UI design and prototyping through frontend engineering and light backend integration.</p>
+
+          <h4 style="margin-top:.75rem">Skills & Tools</h4>
+          <div class="muted">HTML • CSS • JavaScript (ES6+) • React • Node.js • Git • Webpack • Vite • Accessibility (a11y)</div>
 
           <h4 style="margin-top:.75rem">Experience</h4>
-          <div class="muted">3+ years building web apps, freelance &amp; product teams.</div>
+          <div class="muted">3+ years building web apps — product teams, freelance, and side projects. Highlights include building a component library for a startup, shipping performance improvements that reduced Time to Interactive (TTI), and mentoring junior developers.</div>
+
+          <h4 style="margin-top:.75rem">Education & Interests</h4>
+          <p class="muted">Bachelor's degree in Computer Science (or relevant degree). Outside of work I enjoy electronics (Arduino), photography, and contributing to open source.</p>
+
+          <h4 style="margin-top:.75rem">Open to</h4>
+          <div class="muted">Freelance contracts • Full-time frontend roles • Mentoring opportunities</div>
         </aside>
 
         <aside class="card" id="contact" aria-labelledby="contact-title">
           <h3 id="contact-title">Contact</h3>
           <p class="muted">Email me at <a class="muted" href="mailto:samuelcrisfg@gmail.com">samuelcrisfg@gmail.com</a></p>
           <p class="muted">Or link to LinkedIn / GitHub below.</p>
+          <div id="contactMore" class="contact-more" aria-hidden="true">
+            <p class="muted"><strong>Phone:</strong> +63 912 345 6789</p>
+            <p class="muted"><strong>Location:</strong> Philippines</p>
+            <p class="muted"><strong>Availability:</strong> Open to freelance and full-time roles</p>
+            <p class="muted">I'm a frontend developer with 3+ years experience building accessible, performant web apps. I enjoy hardware projects, embedded systems, and mentoring.</p>
+            <p class="muted"><a class="muted" href="#">Download resume</a></p>
+          </div>
           <div style="margin-top:.6rem;display:flex;gap:.5rem">
             <a class="btn" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
             <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
           </div>
         </aside>
+        </div>
       </section>
     </main>
 
@@ -181,19 +253,6 @@
     const lightboxClose = document.getElementById('lightboxClose');
     const mainAvatar = document.getElementById('mainAvatar');
     const headerAvatar = document.getElementById('headerAvatar');
-    const profileInput = document.getElementById('profileInput');
-
-    // Handle profile picture upload
-    profileInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        displayProfileImage(event.target.result);
-      };
-      reader.readAsDataURL(file);
-    });
 
     // Display profile image in avatars
     function displayProfileImage(src) {
@@ -238,6 +297,17 @@
       }
     });
 
+    // Keyboard access: open lightbox when avatar has focus and user presses Enter or Space
+    [mainAvatar, headerAvatar].forEach(el => {
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const img = el.querySelector('img');
+          if (img) openLightbox(img.src);
+        }
+      });
+    });
+
     lightboxClose.addEventListener('click', () => {
       lightbox.classList.remove('active');
     });
@@ -270,6 +340,64 @@
       };
       img.src = 'profile.jpg';
     });
+  
+    // Contact button behavior: toggle expanded contact details and smooth-scroll
+    (function(){
+      const contactBtn = document.getElementById('contactBtn');
+      const contactMore = document.getElementById('contactMore');
+      const contactSection = document.getElementById('contact');
+      if (!contactBtn || !contactMore || !contactSection) return;
+
+      function setAria(active){
+        contactMore.classList.toggle('active', active);
+        contactMore.setAttribute('aria-hidden', (!active).toString());
+        contactBtn.setAttribute('aria-expanded', !!active);
+        contactBtn.textContent = active ? 'Hide contact' : 'Contact';
+      }
+
+      contactBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isActive = contactMore.classList.contains('active');
+        // smooth scroll to contact section
+        contactSection.scrollIntoView({behavior:'smooth', block:'start'});
+        // toggle after a short delay so the user sees the section
+        setTimeout(()=> setAria(!isActive), 300);
+      });
+
+      // keyboard support
+      contactBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          contactBtn.click();
+        }
+      });
+    })();
+
+    // See projects: toggle extra projects
+    (function(){
+      const btn = document.getElementById('seeProjectsBtn');
+      const more = document.getElementById('projectsMore');
+      const section = document.getElementById('projects');
+      if (!btn || !more || !section) return;
+
+      function setOpen(open){
+        more.classList.toggle('active', open);
+        more.setAttribute('aria-hidden', (!open).toString());
+        btn.setAttribute('aria-expanded', !!open);
+        btn.textContent = open ? 'Hide projects' : 'See projects';
+      }
+
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const isOpen = more.classList.contains('active');
+        section.scrollIntoView({behavior:'smooth', block:'start'});
+        setTimeout(()=> setOpen(!isOpen), 250);
+      });
+
+      btn.addEventListener('keydown', (e)=>{
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+      });
+    })();
   </script>
 </body>
 </html></div></aside></div>
